@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Click Example</title>
+</head>
+<body>
+    <button onclick="pressButton()">Button 1</button>
+    <p id="output"></p>
+
+    <script>
+        function pressButton() {
+            fetch('/button1')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('output').innerText = data;
+                });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+/* General Reset */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f6fa;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 30px;
+  color: #333;
+}
+
+
+#header {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Page containers */
+.page {
+  display: none;
+  padding: 30px;
+}
+
+
+.page.active {
+  display: block;
+}
+
+/* Form styling */
+.standard-form {
+  display: inline-block;
+  text-align: left;
+  margin-top: 20px;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #125ba1;
+}
+
+.button-row {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Control Buttons Grid */
+.grid-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.control-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.control-button:hover {
+  background-color: #388e3c;
+}
+
+/* Special columns for last page */
+.freeze-reset-column,
+.mode-power-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Navigation buttons */
+.nav-button {
+  margin-top: 30px;
+  background-color: #ff9800;
+}
+
+.nav-button:hover {
+  background-color: #e68900;
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Camera Control Panel</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7ff;
+    }
+
+    .page {
+      display: none;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    .register-container, .standard-form {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 340px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .register-header {
+      font-size: 28px;
+      font-weight: 600;
+      color: #34495e;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+      width: 100%;
+      padding: 14px 12px;
+      margin: 12px 0;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #5b86e5;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #5b86e5;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3c5ed5;
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .control-button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    #commandOutput {
+      margin-top: 20px;
+      color: blue;
+      font-size: 18px;
+    }
+
+    .switch-links {
+      margin-top: 20px;
+    }
+
+    .switch-links a {
+      color: #5b86e5;
+      text-decoration: underline;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div class="page active" id="page0">
+    <div class="register-container">
+      <div class="register-header">Login</div>
+      <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Enter Username" required />
+        <input type="password" id="loginPassword" placeholder="Enter Password" required />
+        <button type="submit">Login</button>
+        <p id="loginOutput"></p>
+      </form>
+      <div class="switch-links">
+        <a id="showRegister">Register</a>
+      </div>
+
+      <form id="registerForm" style="display: none;">
+        <input type="text" id="registerUsername" placeholder="Choose Username" required />
+        <input type="email" id="registerEmail" placeholder="Email" required />
+        <input type="password" id="registerPassword" placeholder="Choose Password" required />
+        <button type="submit">Register</button>
+        <p id="registerOutput"></p>
+      </form>
+      <div class="switch-links">
+        <a id="showLogin" style="display: none;">Back to Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- IP Address Entry Page -->
+  <div class="page" id="page1">
+    <form id="serverForm" class="register-container">
+      <div class="register-header">Enter IP & Port</div>
+      <input type="text" id="ipAddress" placeholder="IP Address" required />
+      <input type="number" id="port" placeholder="Port" required />
+      <button type="submit" id="connectButton">Connect</button>
+      <p id="startOutput" style="color: red;"></p>
+    </form>
+  </div>
+
+  <!-- Camera Control Page -->
+  <div class="page" id="page2">
+    <h2>Camera Controls</h2>
+    <div class="grid-container">
+      <div class="column">
+        <button class="control-button" data-value="zoom_in">ZOOM IN</button>
+        <button class="control-button" data-value="zoom_out">ZOOM OUT</button>
+        <button class="control-button" data-value="op">OP</button>
+      </div>
+      <div class="column">
+        <button class="control-button" data-value="expo_high">EXPO HIGH</button>
+        <button class="control-button" data-value="auto_expo">AUTO EXPO</button>
+        <button class="control-button" data-value="expo_low">EXPO LOW</button>
+      </div>
+      <div class="column">
+        <button class="control-button" data-value="focus_far">FOCUS FAR</button>
+        <button class="control-button" data-value="auto_focus">AUTO FOCUS</button>
+        <button class="control-button" data-value="focus_near">FOCUS NEAR</button>
+      </div>
+    </div>
+    <div class="grid-container">
+      <button class="control-button" data-value="freeze">FREEZE</button>
+      <button class="control-button" data-value="reset">RESET</button>
+      <button class="control-button" data-value="mode">MODE</button>
+      <button class="control-button" data-value="power">POWER</button>
+    </div>
+    <button class="control-button" id="nextPage">OTHER CONTROLS</button>
+    <div id="commandOutput"></div>
+  </div>
+
+  <!-- Other Controls Page -->
+  <div class="page" id="page3">
+    <h2>Other Controls</h2>
+    <div class="grid-container">
+      <button class="control-button" data-value="v_flip">VERTICAL FLIP</button>
+      <button class="control-button" data-value="h_flip">HORIZONTAL FLIP</button>
+    </div>
+    <button class="control-button" id="prevPage">Back</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
